@@ -1,0 +1,46 @@
+<div class="widget" ng-repeat="article in articles">
+    <div class="heading">
+        <div class="title">
+            <h1 ng-bind="article.header.title">
+            </h1>
+        </div>
+    </div>
+    <div class="body">
+        <article>
+            <header>
+                <p class="meta">
+                    <span tooltip="Translate" ng-show="article.isTranslate"><i class="fa fa-language"></i> By <span
+                            class="author" ng-bind="article.header.translator"></span></span>
+                    <span tooltip="Translate" ng-hide="article.isTranslate"> By <span
+                            class="author" ng-bind="article.header.author.name"></span></span> On <span class="date"
+                                                                                                        ng-bind="article.header.info.date | date "></span>
+                    <span ng-show="article.isTranslate"> from <a
+                            class="source" href="article.header.from" rel="nofollow">Here</a></span>
+                    <span class="pull-right"><span><i class="fa fa-book"></i>{{article.header.info.view}}</span><span><i
+                            class="fa fa-comments"></i>{{article.header.info.comment}}</span><span><i
+                            class="fa fa-thumbs-o-up"></i>{{article.header.info.like}}</span><span><i
+                            class="fa fa-thumbs-o-down"></i>{{article.header.info.unlike}}</span></span>
+                </p>
+
+                <p class="tags"><span class="fa fa-tags"></span> <span class="label label-info"
+                                                                       ng-repeat="tag in article.header.tags">{{tag}}</span>
+                </p>
+            </header>
+            <div ng-bind-html="article.header.desc"></div>
+        </article>
+    </div>
+    <div class="footer">
+        <a class="btn btn-default" href="#/art/{{article.id}}">More</a>
+    </div>
+</div>
+
+<div class="widget" ng-show="pagination.totalPages > 1">
+    <div class="body">
+        <ul class="pagination">
+            <li ng-class="{'disabled' : pagination.first}"><a ng-click="goPage(1)">&laquo;</a></li>
+            <li ng-repeat="i in makeRange(pagination.totalPages, pagination.number)"
+                ng-class="{'active': i == pagination.number}"><a ng-click="goPage(i)">{{i + 1}}</a></li>
+            <li ng-class="{'disabled' : pagination.last}"><a ng-click="goPage(pagination.totalPages)">&raquo;</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,177 @@
+[
+    {
+        "id": 1,
+        "header": {
+            "title": "1Using Base Controllers In AngularJS - An Experiment",
+            "sub_title": "Basic concept of Docker",
+            "from": "",
+            "translator": "Mason",
+            "author": {
+                "name": "梅东旭",
+                "email": "dongxu.m@gmail.com",
+                "weibo": "132132213",
+                "twitter": "342432",
+                "facebook": "fdsfsdfsdf"
+            },
+            "tags": ["Docker"],
+            "info": {
+                "date": 23123214,
+                "comment": 312,
+                "view": 1232,
+                "like": 324,
+                "unlike": 432
+            },
+            "desc": "<p>Yesterday, in a conversation that I was having with Chris Schetter, I was rehashing how my JavaScript style has changed somewhat since I've started using AngularJS. Specifically, I've started using the Revealing Module Pattern a lot more than I ever have before. While many things have contributed to this shift, one feature, or lack thereof, was the inability to use Base Controllers in AngularJS. Since Controllers cannot be generated within Factories, it seemed that Base Controllers could only be provided through global references (which goes against everything that AngularJS stands for). That said, after my conversation yesterday, I wanted to give Base Controllers one more try.<\/p>"
+        }
+    },
+    {
+        "id": 2,
+        "header": {
+            "title": "2Using Base Controllers In AngularJS - An Experiment",
+            "sub_title": "Basic concept of Docker",
+            "from": "",
+            "translator": "Mason",
+            "author": {
+                "name": "梅东旭",
+                "email": "dongxu.m@gmail.com",
+                "weibo": "132132213",
+                "twitter": "342432",
+                "facebook": "fdsfsdfsdf"
+            },
+            "tags": ["Docker"],
+            "info": {
+                "date": 23123214,
+                "comment": 312,
+                "view": 1232,
+                "like": 324,
+                "unlike": 432
+            },
+            "desc": "<p>Yesterday, in a conversation that I was having with Chris Schetter, I was rehashing how my JavaScript style has changed somewhat since I've started using AngularJS. Specifically, I've started using the Revealing Module Pattern a lot more than I ever have before. While many things have contributed to this shift, one feature, or lack thereof, was the inability to use Base Controllers in AngularJS. Since Controllers cannot be generated within Factories, it seemed that Base Controllers could only be provided through global references (which goes against everything that AngularJS stands for). That said, after my conversation yesterday, I wanted to give Base Controllers one more try.<\/p>"
+        }
+    },
+    {
+        "id": 3,
+        "header": {
+            "title": "3Using Base Controllers In AngularJS - An Experiment",
+            "sub_title": "Basic concept of Docker",
+            "from": "",
+            "translator": "Mason",
+            "author": {
+                "name": "梅东旭",
+                "email": "dongxu.m@gmail.com",
+                "weibo": "132132213",
+                "twitter": "342432",
+                "facebook": "fdsfsdfsdf"
+            },
+            "tags": ["Docker"],
+            "info": {
+                "date": 23123214,
+                "comment": 312,
+                "view": 1232,
+                "like": 324,
+                "unlike": 432
+            },
+            "desc": "<p>Yesterday, in a conversation that I was having with Chris Schetter, I was rehashing how my JavaScript style has changed somewhat since I've started using AngularJS. Specifically, I've started using the Revealing Module Pattern a lot more than I ever have before. While many things have contributed to this shift, one feature, or lack thereof, was the inability to use Base Controllers in AngularJS. Since Controllers cannot be generated within Factories, it seemed that Base Controllers could only be provided through global references (which goes against everything that AngularJS stands for). That said, after my conversation yesterday, I wanted to give Base Controllers one more try.<\/p>"
+        }
+    },
+    {
+        "id": 4,
+        "header": {
+            "title": "4Using Base Controllers In AngularJS - An Experiment",
+            "sub_title": "Basic concept of Docker",
+            "from": "",
+            "translator": "Mason",
+            "author": {
+                "name": "梅东旭",
+                "email": "dongxu.m@gmail.com",
+                "weibo": "132132213",
+                "twitter": "342432",
+                "facebook": "fdsfsdfsdf"
+            },
+            "tags": ["Docker"],
+            "info": {
+                "date": 23123214,
+                "comment": 312,
+                "view": 1232,
+                "like": 324,
+                "unlike": 432
+            },
+            "desc": "<p>Yesterday, in a conversation that I was having with Chris Schetter, I was rehashing how my JavaScript style has changed somewhat since I've started using AngularJS. Specifically, I've started using the Revealing Module Pattern a lot more than I ever have before. While many things have contributed to this shift, one feature, or lack thereof, was the inability to use Base Controllers in AngularJS. Since Controllers cannot be generated within Factories, it seemed that Base Controllers could only be provided through global references (which goes against everything that AngularJS stands for). That said, after my conversation yesterday, I wanted to give Base Controllers one more try.<\/p>"
+        }
+    },
+    {
+        "id": 5,
+        "header": {
+            "title": "5Using Base Controllers In AngularJS - An Experiment",
+            "sub_title": "Basic concept of Docker",
+            "from": "",
+            "translator": "Mason",
+            "author": {
+                "name": "梅东旭",
+                "email": "dongxu.m@gmail.com",
+                "weibo": "132132213",
+                "twitter": "342432",
+                "facebook": "fdsfsdfsdf"
+            },
+            "tags": ["Docker"],
+            "info": {
+                "date": 23123214,
+                "comment": 312,
+                "view": 1232,
+                "like": 324,
+                "unlike": 432
+            },
+            "desc": "<p>Yesterday, in a conversation that I was having with Chris Schetter, I was rehashing how my JavaScript style has changed somewhat since I've started using AngularJS. Specifically, I've started using the Revealing Module Pattern a lot more than I ever have before. While many things have contributed to this shift, one feature, or lack thereof, was the inability to use Base Controllers in AngularJS. Since Controllers cannot be generated within Factories, it seemed that Base Controllers could only be provided through global references (which goes against everything that AngularJS stands for). That said, after my conversation yesterday, I wanted to give Base Controllers one more try.<\/p>"
+        }
+    },
+    {
+        "id": 6,
+        "header": {
+            "title": "6Using Base Controllers In AngularJS - An Experiment",
+            "sub_title": "Basic concept of Docker",
+            "from": "",
+            "translator": "Mason",
+            "author": {
+                "name": "梅东旭",
+                "email": "dongxu.m@gmail.com",
+                "weibo": "132132213",
+                "twitter": "342432",
+                "facebook": "fdsfsdfsdf"
+            },
+            "tags": ["Docker"],
+            "info": {
+                "date": 23123214,
+                "comment": 312,
+                "view": 1232,
+                "like": 324,
+                "unlike": 432
+            },
+            "desc": "<p>Yesterday, in a conversation that I was having with Chris Schetter, I was rehashing how my JavaScript style has changed somewhat since I've started using AngularJS. Specifically, I've started using the Revealing Module Pattern a lot more than I ever have before. While many things have contributed to this shift, one feature, or lack thereof, was the inability to use Base Controllers in AngularJS. Since Controllers cannot be generated within Factories, it seemed that Base Controllers could only be provided through global references (which goes against everything that AngularJS stands for). That said, after my conversation yesterday, I wanted to give Base Controllers one more try.<\/p>"
+        }
+    },
+    {
+        "id": 7,
+        "header": {
+            "title": "6Using Base Controllers In AngularJS - An Experiment",
+            "sub_title": "Basic concept of Docker",
+            "from": "",
+            "translator": "Mason",
+            "author": {
+                "name": "梅东旭",
+                "email": "dongxu.m@gmail.com",
+                "weibo": "132132213",
+                "twitter": "342432",
+                "facebook": "fdsfsdfsdf"
+            },
+            "tags": ["Docker"],
+            "info": {
+                "date": 23123214,
+                "comment": 312,
+                "view": 1232,
+                "like": 324,
+                "unlike": 432
+            },
+            "desc": "<p>Yesterday, in a conversation that I was having with Chris Schetter, I was rehashing how my JavaScript style has changed somewhat since I've started using AngularJS. Specifically, I've started using the Revealing Module Pattern a lot more than I ever have before. While many things have contributed to this shift, one feature, or lack thereof, was the inability to use Base Controllers in AngularJS. Since Controllers cannot be generated within Factories, it seemed that Base Controllers could only be provided through global references (which goes against everything that AngularJS stands for). That said, after my conversation yesterday, I wanted to give Base Controllers one more try.<\/p>"
+        }
+    }
+]

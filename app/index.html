@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="iGitrasMason" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="iGitrasMason" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="iGitrasMason" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="iGitrasMason" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="pageInfo.title"></title>
+    <meta name="description" content="" ng-bind="pageInfo.desc">
+    <meta name="Keywords" content="" ng-bind="pageInfo.keywords"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap-submenu/dist/css/bootstrap-submenu.css"/>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+    <!--<link rel="stylesheet" href="bower_components/google-code-prettify/bin/prettify.min.css">-->
+    <!--<link rel="stylesheet" href="bower_components/google-code-prettify/styles/sons-of-obsidian.css">-->
+    <!--<script src="bower_components/google-code-prettify/bin/prettify.min.js"></script>-->
+    <link rel="stylesheet" href="styles/app.css">
+
+</head>
+<body>
+
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div ng-include="'html/inc/header.html'"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-md-9">
+            <div ng-view></div>
+        </div>
+        <div class="col-lg-2 col-md-3">
+            <div class="widget" ng-controller="LatestArticles">
+                <div class="heading">
+                    <div class="title">
+                        <h4>最新文章 <a ng-click="reload()"><i class="fa fa-refresh pull-right"></i></a></h4>
+                    </div>
+                </div>
+                <div class="body">
+                    <ul class="list-group">
+                        <li ng-repeat="art in latestArts" class="list-group-item">
+                            <a href="#/art/{{art.id}}" ng-bind="art.header.title" data-toggle="tooltip"
+                               title="{{art.header.title}}"></a>
+
+                            <div class="tooltip top" role="tooltip">
+                                <div class="tooltip-arrow"></div>
+                                <div class="tooltip-inner" ng-bind-html="art.header.desc">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="widget">
+                <div class="heading">
+                    <div class="title">
+                        Test
+                    </div>
+                </div>
+                <div class="body">
+                    This is the body
+                </div>
+                <div class="footer">
+                    this is the footer
+                </div>
+            </div>
+            <div class="widget">
+                <div class="heading">
+                    <div class="title">
+                        Test
+                    </div>
+                </div>
+                <div class="body">
+                    This is the body
+                </div>
+                <div class="footer">
+                    this is the footer
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/bootstrap-submenu/dist/js/bootstrap-submenu.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+
+<script src="scripts/app.js"></script>
+<script src="scripts/controller/controller.js"></script>
+<script src="scripts/service/service.js"></script>
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
+
+</body>
+</html>

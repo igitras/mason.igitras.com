@@ -1,0 +1,36 @@
+<div class="widget">
+    <div class="heading">
+        <div class="title">
+            <h1 ng-bind="header.title">
+            </h1>
+        </div>
+    </div>
+    <div class="body">
+        <article>
+            <header>
+                <p class="meta">
+                    <span tooltip="Translate" ng-show="isTranslate"><i class="fa fa-language"></i> By <span
+                        class="author" ng-bind="header.translator"></span></span>
+                    <span tooltip="Translate" ng-hide="isTranslate"> By <span
+                            class="author" ng-bind="header.author.name"></span></span> On <span class="date" ng-bind="header.info.date | date "></span>
+                    <span ng-show="isTranslate"> from <a
+                        class="source" href="header.from" rel="nofollow">Here</a></span>
+                    <span class="pull-right"><span><i class="fa fa-book"></i>{{header.info.view}}</span><span><i
+                        class="fa fa-comments"></i>{{header.info.comment}}</span><span><i
+                        class="fa fa-thumbs-o-up"></i>{{header.info.like}}</span><span><i
+                        class="fa fa-thumbs-o-down"></i>{{header.info.unlike}}</span></span>
+                </p>
+
+                <p class="tags"><span class="fa fa-tags"></span> <span class="label label-info" ng-repeat="tag in header.tags">{{tag}}</span></p>
+            </header>
+            <div ng-bind-html="content"></div>
+        </article>
+        {{header.id}}
+    </div>
+    <div class="footer">
+        <ul class="pager">
+            <li class="previous" ng-show="hasPrevious()"><a href="#/art/{{id - 1}}">Previous</a></li>
+            <li class="next" ng-show="hasNext()"><a href="#/art/{{id + 1}}">Next</a></li>
+        </ul>
+    </div>
+</div>
