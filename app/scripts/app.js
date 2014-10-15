@@ -8,34 +8,35 @@ var iGitrasMason = angular.module('iGitrasMason', [
     'iGitrasMason.version'
 ]);
 
-iGitrasMason.config(['$routeProvider', function ($routeProvider) {
+iGitrasMason.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+//    $locationProvider.html5Mode(true);
+    $routeProvider
+        .when('/', {
+            templateUrl: 'html/home.html',
+            controller: 'HomeController'
+        })
+        .when('/cat/:id/art', {
+            templateUrl: 'html/home.html',
+            controller: 'CatalogArticleController'
+        })
+        .when('/art/:id', {
+            templateUrl: 'html/article/article.html',
+            controller: 'ArticleController'
+        })
 
-        $routeProvider
-            .when('/', {
-                templateUrl: 'html/home.html',
-                controller: 'HomeController'
-            })
-            .when('/cat/:id/art', {
-                templateUrl: 'html/home.html',
-                controller: 'CatalogArticleController'
-            })
-            .when('/art/:id', {
-                templateUrl: 'html/article/article.html',
-                controller: 'ArticleController'
-            })
+        .otherwise({redirectTo: '/'});
+}]);
 
-            .otherwise({redirectTo: '/'});
-    }]);
+//iGitrasMason.constant('appprefix', "app/");
 
-iGitrasMason.constant('appprefix', "/app");
+iGitrasMason.run(['$rootScope', '$location', '$http', 'Session', 'MenuService',
+    function ($rootScope, $location, $http, Session, MenuService) {
 
-iGitrasMason.run(['$rootScope', '$location', '$http', 'Session','MenuService',
-    function($rootScope, $location, $http, Session, MenuService){
-
-        $rootScope.$on('event:menu-contentRequired', function(){
+        $rootScope.$on('event:menu-contentRequired', function () {
             MenuService.loadMenu();
         });
-        $rootScope.$on('event:title-Updated', function(event, data){
+
+        $rootScope.$on('event:title-Updated', function (event, data) {
             $rootScope.pageInfo = data;
         });
 

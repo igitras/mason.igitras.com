@@ -1,3 +1,11 @@
+<div class="widget" ng-show="articles.length == 0">
+    <div class="body">
+        <p class="text-center text-warning"><i class="fa fa-warning fa-5x"></i></p>
+
+        <p class="text-center text-warning">该目录下没有文章，返回<a href="#">首页</a></p>
+    </div>
+</div>
+
 <div class="widget" ng-repeat="article in articles">
     <div class="heading">
         <div class="title">

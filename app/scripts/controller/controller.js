@@ -12,9 +12,18 @@ iGitrasMason.controller('HeaderController', ['$scope', 'Session', 'MenuService',
                 Session.restoreSession();
             }
 
-            $scope.initMenu(Session.menuContent);
+            MenuService.loadMenu().success(
+                function (data, status, headers, config) {
+                    Session.create(data);
+                    $scope.$broadcast('event:menu-contentLoaded', data);
+                    $scope.initMenu(Session.menuContent);
+                }
+            );
         };
 
+        $scope.$on('event:menu-contentLoaded', function(data) {
+            $scope.initMenu(data);
+        });
 
         $scope.initMenu = function (data) {
             $scope.menus = data.items;
@@ -101,6 +110,7 @@ iGitrasMason.controller('HomeController', ['$scope', 'ArticleService', function 
         ArticleService.loadArticles().success(
             function (data, status, headers, config) {
                 $scope.articles = data;
+
                 //filter with the pagination
                 $scope.filterArticles($scope.articles);
             }
@@ -112,7 +122,7 @@ iGitrasMason.controller('HomeController', ['$scope', 'ArticleService', function 
         var arts = [];
 
         $scope.pagination.totalElements = data.length;
-        $scope.pagination.totalPages = (data.length / $scope.pagination.size) + ( data.length % $scope.pagination.size == 0 ? 0 : 1);
+        $scope.pagination.totalPages = Math.ceil($scope.pagination.totalElements / $scope.pagination.size);
         $scope.pagination.first = ($scope.pagination.number === 1);
         $scope.pagination.last = ($scope.pagination.number === $scope.pagination.totalPages);
 
@@ -207,7 +217,6 @@ iGitrasMason.controller('CatalogArticleController', ['$scope', '$routeParams', '
                 $scope.articles = data;
                 //filter with the pagination
                 $scope.filterArticles($scope.articles);
-//                alert(JSON.stringify($scope.articles));
             }
         );
         $scope.$emit('event:title-Updated', $scope.pageInfo);
@@ -294,6 +303,7 @@ iGitrasMason.controller('ArticleController', ['$scope', '$routeParams', 'Article
         ArticleService.loadArticle($routeParams.id).success(
             function (data, status, headers, config) {
                 $scope.id = data.id;
+                alert(JSON.stringify(data.header));
                 $scope.header = data.header;
                 $scope.content = data.content;
 
@@ -345,7 +355,7 @@ iGitrasMason.controller('LatestArticles', ['$scope', 'ArticleService', function 
                 $scope.latestArts = [];
 
                 var counter = 0;
-                for (var i = data.length - 1; i > 0; i--) {
+                for (var i = 0; i < data.length; i++) {
                     if (counter < $scope.latestSize) {
                         counter++;
                         $scope.latestArts.push(data[i]);
@@ -353,8 +363,6 @@ iGitrasMason.controller('LatestArticles', ['$scope', 'ArticleService', function 
                 }
             }
         );
-
-
     };
     $scope.reload = function(){
         $scope.loadLatestArticles();

@@ -5,21 +5,13 @@
  */
 
 // ~---- Public ++++++++++++++++++++++++++++++++++++++++++++
-iGitrasMason.factory('MenuService', ['$http', 'appprefix', 'Session', function ($http, appprefix, Session) {
+iGitrasMason.factory('MenuService', ['$http', function ($http) {
     var MenuService = {};
 
     MenuService.loadMenu = function () {
-        if (Session.menuContent.items === undefined || Session.menuContent.items === null) {
-            $http.get(appprefix + '/contents/catelog.json').success(
-                function (data, status, headers, config) {
-                    Session.create(data);
-                    return Session.menuContent;
-                }
-            );
-        } else {
-            return Session.menuContent;
-        }
+        return $http.get('contents/catelog.content');
     };
+
     return MenuService;
 }
 ]);
@@ -75,8 +67,8 @@ iGitrasMason.factory('Session', ['$rootScope', '$cookieStore', 'ArticleService',
         var data = $cookieStore.get('MenuContent');
         if (!!data) {
             $rootScope.$broadcast('event:menu-contentRequired');
-            Session.init();
-            Session.menuContent = data;
+//            Session.init();
+//            Session.menuContent = data;
         } else {
             $rootScope.$broadcast('event:menu-contentRequired');
         }
@@ -85,19 +77,19 @@ iGitrasMason.factory('Session', ['$rootScope', '$cookieStore', 'ArticleService',
     return Session;
 }]);
 
-iGitrasMason.factory('ArticleService', ['$http', 'appprefix', function ($http, appprefix) {
+iGitrasMason.factory('ArticleService', ['$http',  function ($http) {
     var ArticleService = {};
 
     ArticleService.loadArticle = function (id) {
-        return  $http.get(appprefix + '/contents/article/art-' + id + '.json');
+        return  $http.get('contents/article/art-' + id + '.content');
     };
 
     ArticleService.loadArticles = function () {
-        return  $http.get(appprefix + '/contents/art-basic.json');
+        return  $http.get('contents/art-basic.content');
     };
 
     ArticleService.loadInfo = function () {
-        return  $http.get(appprefix + '/contents/info.json');
+        return  $http.get('contents/info.content');
     };
 
     return ArticleService;

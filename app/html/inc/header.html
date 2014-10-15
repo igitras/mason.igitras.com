@@ -21,9 +21,6 @@
             </form>
 
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#/art/1">Article</a>
-                </li>
                 <li class="dropdown" ng-repeat="item in menus">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#/cat/{{item.id}}/art">
                         {{item.name}} <span ng-show="item.children.length > 0" class="caret"></span>
