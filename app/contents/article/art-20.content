@@ -1,26 +1,599 @@
-{
-    "id": 6,
-    "header": {
-        "title": "",
-        "sub_title": "",
-        "from": "",
-        "translator": "",
-        "author": {
-            "name": "",
-            "email": "",
-            "weibo": "",
-            "twitter": "",
-            "facebook": ""
-        },
-        "tags": [""],
-        "info": {
-            "date": ,
-            "comment": 0,
-            "view": 0,
-            "like": 0,
-            "unlike": 0
-        },
-        "desc": ""
-    },
-    "content": ""
+AbstractTemplateReader.java
+----------------
+package org.personal.mason.common.code.gen.template;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public abstract class AbstractTemplateReader<T> implements TemplateReader<T> {
+
+    @Override
+    public T read() {
+
+        return null;
+    }
 }
+
+============================================================
+FilePartTemplate.java
+----------------
+package org.personal.mason.common.code.gen.template;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public interface FilePartTemplate extends Template {
+}
+
+============================================================
+FileTemplate.java
+----------------
+package org.personal.mason.common.code.gen.template;
+
+import java.util.List;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public interface FileTemplate<T extends FilePartTemplate> extends Template {
+
+    public List<T> getFileParts();
+
+    public void addFilePart(T... filePartTemplate);
+
+    public String resolveTemplate(String templatePath);
+}
+
+============================================================
+AbstractJava.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+import org.apache.commons.io.IOUtils;
+import org.personal.mason.common.code.gen.template.Template;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public abstract class AbstractJava implements Template {
+
+    private final String template;
+
+    public AbstractJava() {
+        this(null);
+    }
+
+    public AbstractJava(String templateFileName) {
+        if (templateFileName == null) {
+            this.template = resolveTemplate(getPathString());
+        } else {
+            this.template = resolveTemplate(templateFileName);
+        }
+    }
+
+    @Override
+    public String getTemplate() {
+        return template;
+    }
+
+    @Override
+    public String resolveTemplate(String templatePath) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(templatePath)) {
+            return IOUtils.toString(inputStream, "UTF-8");
+        } catch (IOException e) {
+            throw new IllegalStateException("Cannot find template with in current package.");
+        }
+    }
+
+    protected String getPathString() {
+        return getClass().getName().replaceAll("\\.", "/") + ".tm";
+    }
+
+}
+
+============================================================
+AbstractJavaFile.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+import org.personal.mason.common.code.util.Assert;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public abstract class AbstractJavaFile extends AbstractJava implements JavaFile {
+
+    private final List<JavaFilePart> javaFileParts;
+
+    public AbstractJavaFile() {
+        this(new ArrayList<JavaFilePart>(), null);
+    }
+
+    public AbstractJavaFile(List<JavaFilePart> javaFileParts, String templateFileName) {
+        super(templateFileName);
+        Assert.notNull(javaFileParts, "Java File Parts must not be null.");
+        this.javaFileParts = javaFileParts;
+    }
+
+    @Override
+    public List<JavaFilePart> getFileParts() {
+        return Collections.unmodifiableList(javaFileParts);
+    }
+
+    @Override
+    public void addFilePart(JavaFilePart... filePartTemplate) {
+        if (filePartTemplate != null) {
+            javaFileParts.addAll(Arrays.asList(filePartTemplate));
+        }
+    }
+
+}
+
+============================================================
+AbstractJavaFilePart.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+import org.personal.mason.common.code.util.Assert;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public abstract class AbstractJavaFilePart extends AbstractJava implements JavaFilePart {
+
+    private final List<JavaFilePart> javaFileParts;
+
+    public AbstractJavaFilePart() {
+        this(new ArrayList<JavaFilePart>(), null);
+    }
+
+    public AbstractJavaFilePart(List<JavaFilePart> javaFileParts, String templateFileName) {
+        super(templateFileName);
+        Assert.notNull(javaFileParts, "Java File Parts must not be null.");
+        this.javaFileParts = javaFileParts;
+    }
+
+}
+
+============================================================
+IsFinal.java
+----------------
+package org.personal.mason.common.code.gen.template.java.enums;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public enum IsFinal {
+    FINAL, DEFAULT
+}
+
+============================================================
+IsStatic.java
+----------------
+package org.personal.mason.common.code.gen.template.java.enums;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public enum IsStatic {
+    STATIC, DEFAULT
+}
+
+============================================================
+VisitPrivilege.java
+----------------
+package org.personal.mason.common.code.gen.template.java.enums;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public enum VisitPrivilege {
+
+    PUBLIC,PRIVATE,DEFAULT,PROTECTED
+}
+
+============================================================
+JavaClassFile.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public class JavaClassFile extends AbstractJavaFile implements JavaFile {
+
+
+
+    @Override
+    public String build() {
+        return null;
+    }
+}
+
+============================================================
+JavaEnumFile.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public class JavaEnumFile extends AbstractJavaFile implements JavaFile {
+    @Override
+    public String build() {
+        return null;
+    }
+}
+
+============================================================
+JavaFieldPart.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public class JavaFieldPart extends AbstractJavaFilePart {
+
+    @Override
+    public String build() {
+        return null;
+    }
+}
+
+============================================================
+JavaFile.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+import org.personal.mason.common.code.gen.template.FileTemplate;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public interface JavaFile extends FileTemplate<JavaFilePart> {
+}
+
+============================================================
+JavaFilePart.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+import org.personal.mason.common.code.gen.template.FilePartTemplate;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public interface JavaFilePart extends FilePartTemplate {
+
+}
+
+============================================================
+JavaImportPart.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public class JavaImportPart extends AbstractJavaFilePart {
+
+    public JavaImportPart() {
+        super();
+    }
+
+    @Override
+    public String build() {
+        return null;
+    }
+}
+============================================================
+JavaInterfaceFile.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+import java.util.List;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public class JavaInterfaceFile extends AbstractJavaFile implements JavaFile {
+
+    @Override
+    public String build() {
+        return null;
+    }
+}
+
+============================================================
+JavaMetaData.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+import org.personal.mason.common.code.gen.MetaData;
+import org.personal.mason.common.code.gen.template.java.enums.IsFinal;
+import org.personal.mason.common.code.gen.template.java.enums.IsStatic;
+import org.personal.mason.common.code.gen.template.java.enums.VisitPrivilege;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public class JavaMetaData extends MetaData {
+
+    private static final String EMPTY_STRING = "";
+    private static final String VOID = "void";
+
+    private static final String VISIT_PRIVILEGE = "visitPrivilege";
+    private static final String IS_STATIC = "isStatic";
+    private static final String IS_FINAL = "isFinal";
+    private static final String COMMENT = "comment";
+
+    private static final String FIELD_TYPE = "fieldType";
+    private static final String FIELD_NAME = "fieldName";
+
+    private static final String PACKAGE_NAME = "packageName";
+
+    private static final String RETURN_TYPE = "returnType";
+    private static final String METHOD_NAME = "methodName";
+    private static final String METHOD_PARAM = "methodParam";
+    private static final String METHOD_RETURN = "methodReturn";
+
+    private static final String CLASS_NAME = "className";
+
+
+    public String visitPrivilege() {
+        VisitPrivilege privilege = (VisitPrivilege) get(VISIT_PRIVILEGE);
+        if(privilege == VisitPrivilege.DEFAULT)
+        {
+            return EMPTY_STRING;
+        }
+        return privilege.name().toLowerCase();
+    }
+
+    public String isStatic() {
+        IsStatic isStatic = (IsStatic) get(IS_STATIC);
+        if(isStatic == IsStatic.DEFAULT){
+            return EMPTY_STRING;
+        }
+        return isStatic.name().toLowerCase();
+    }
+
+    public String isFinal() {
+        IsFinal isFinal = (IsFinal) get(IS_FINAL);
+        if(isFinal == IsFinal.DEFAULT){
+            return EMPTY_STRING;
+        }
+        return isFinal.name().toLowerCase();
+    }
+
+    public String comment() {
+        Object comment = get(COMMENT);
+        if(comment == null) {
+            return EMPTY_STRING;
+        }
+        return (String)comment;
+    }
+
+    public String fieldType() {
+        Object fieldType = get(FIELD_TYPE);
+        if(fieldType == null) {
+            return VOID;
+        }
+        return (String) fieldType;
+    }
+
+    public String fieldName() {
+        Object fieldName = get(FIELD_NAME);
+        if(fieldName == null) {
+            throw new IllegalStateException("Field name must not be null");
+        }
+        return (String) fieldName;
+    }
+
+    public String packageName() {
+        return null;
+    }
+
+}
+
+============================================================
+JavaMethodPart.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+import java.util.List;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public class JavaMethodPart extends AbstractJavaFilePart {
+
+    @Override
+    public String build() {
+        return null;
+    }
+}
+
+============================================================
+JavaTemplateProvider.java
+----------------
+package org.personal.mason.common.code.gen.template.java;
+
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by mason on 2014-12-01.
+ */
+public class JavaTemplateProvider {
+
+    private static Map<String, String> javaTemplateNameMap = new HashMap<>();
+
+}
+
+============================================================
+Template.java
+----------------
+package org.personal.mason.common.code.gen.template;
+
+/**
+ * Created by mason on 2014-11-27.
+ */
+public interface Template {
+
+    public String getTemplate();
+
+    public String build();
+
+    public String resolveTemplate(String templatePath);
+}
+
+============================================================
+TemplateReader.java
+----------------
+package org.personal.mason.common.code.gen.template;
+
+/**
+ *
+ * Read from the template file And generate a memory Template
+ *
+ * Created by mason on 2014-12-01.
+ */
+public interface TemplateReader<T> {
+
+    /**
+     * Read from file.
+     */
+    T read();
+}
+
+============================================================
+TemplateWriter.java
+----------------
+package org.personal.mason.common.code.gen.template;
+
+/**
+ * Write the template to file.
+ *
+ * Created by mason on 2014-12-01.
+ */
+public interface TemplateWriter<T> {
+
+    /**
+     * Write to file
+     */
+    void write(T template);
+}
+
+============================================================
+AbstractJavaFile.tm
+----------------
+#JavaImportPart#
+
+##comment
+##visitPrivilege ##isStatic ##isFinal ##fieldType ##fieldName;
+============================================================
+JavaAbstractMethodPart.tm
+----------------
+#JavaImportPart#
+
+##comment
+abstract ##returnType ##methodName (##methodParam) #JavaThrowsPart# {
+    #MethodLogicalPart#
+    ##methodReturn;
+}
+============================================================
+JavaClassFile.tm
+----------------
+#CopyrightPart#
+
+#JavaPackagePart#
+
+#JavaImportsPart#
+
+##comment
+##visitPrivilege ##isStatic ##isFinal class ##className #JavaExtendsPart# #JavaImplementsPart# {
+
+    #JavaFieldsPart#
+
+    #JavaConstructorsPart#
+
+    #JavaMethodsPart#
+}
+============================================================
+JavaEnumFile.tm
+----------------
+#CopyrightPart#
+
+#JavaPackagePart#
+
+#JavaImportsPart#
+
+##comment
+##visitPrivilege enum ##className {
+
+    #JavaEnumElementsPart#
+
+    #JavaFieldsPart#
+
+    #JavaConstructorsPart#
+
+    #JavaMethodsPart#
+}
+============================================================
+JavaFieldPart.tm
+----------------
+#JavaImportPart#
+
+##comment
+##visitPrivilege ##isStatic ##isFinal ##fieldType ##fieldName;
+============================================================
+JavaImportPart.tm
+----------------
+import ##className;
+============================================================
+JavaIntefaceFile.tm
+----------------
+#CopyrightPart#
+
+#JavaPackagePart#
+
+#JavaImportsPart#
+
+##comment
+public interface ##className #JavaExtendsPart# {
+
+    #JavaFieldsPart#
+
+    #JavaMethodsPart#
+}
+============================================================
+JavaMethodPart.tm
+----------------
+#JavaImportPart#
+
+##comment
+##visitPrivilege ##isStatic ##isFinal ##returnType ##methodName (##methodParam) {
+    #MethodLogicalPart#
+    ##methodReturn;
+}
+============================================================
+JavaPackagePart.tm
+----------------
+package ##packageName;
+============================================================
